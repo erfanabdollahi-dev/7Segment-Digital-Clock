@@ -67,12 +67,14 @@ class Timer extends React.Component{
         clearInterval(this.intervalId)
         this.setState({
             isRunning : false,
-            hours: 0,
-            minutes: 0,
-            seconds : 0,
-       
+            h: '00',
+            m: '00',
+            s : '00',
+            
             
         })
+        
+        
         
     }
     
@@ -80,10 +82,10 @@ class Timer extends React.Component{
         clearInterval(this.intervalId)
         this.setState({
             isRunning : false,
-            hours: 0,
-            minutes: 0,
-            seconds : 0,
-         
+            h: 0,
+            m: 0,
+            s : 0,
+            
             
         })
         
