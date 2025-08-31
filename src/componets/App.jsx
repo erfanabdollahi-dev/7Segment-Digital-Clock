@@ -15,7 +15,7 @@ class App extends React.Component{
         }
     }
     
-    buttonConfig(){
+    buttonConfig = () => {
         const buttons = document.querySelectorAll(".btn");
         
         
@@ -23,7 +23,7 @@ class App extends React.Component{
         
         buttons.forEach((btn, index) => {
             btn.addEventListener("click", () => {
-               
+                
                 if (btn.classList.contains("active")) return;
                 
                 
@@ -34,21 +34,17 @@ class App extends React.Component{
                     
                 });
                 
-     
+                
                 btn.classList.add("active");
                 this.setState({
                     mode: index,
                 })
                 
-                
-                
-                
-               
                 buttons.forEach((b, i) => {
                     if (i !== index){
                         
                         b.classList.add("disabled");
-                    
+                        
                     } 
                     
                 });
@@ -63,15 +59,12 @@ class App extends React.Component{
         
         
     }
-    componentDidUpdate(){
-       
-    
-    }
+
     render(){
         const {mode} = this.state;
         
         let content = 0;
-
+        
         if (mode === 0){
             content = <Clock/>
         }
@@ -97,7 +90,7 @@ class App extends React.Component{
             <div className="mode" id="timer">TIMER</div>
             </div>
             {content}
-
+            
             </div>
             </div>
             </div>
