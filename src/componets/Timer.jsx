@@ -17,9 +17,10 @@ class Timer extends React.Component{
     }
     startTimer = () => {
         // preventing multiple starts
-        if(this.state.isRunning){
-            return 
-        }
+        if(this.state.isRunning)return;
+        
+        
+        
         
         const hours = parseInt(document.getElementById("hours").value) || 0;
         const minutes = parseInt(document.getElementById("minutes").value) || 0;
@@ -27,15 +28,15 @@ class Timer extends React.Component{
         
         let totalSeconds = hours* 3600 + minutes * 60 +  seconds;
         
-      
+        
         if(totalSeconds <= 0 ){
             return
         }
+        
         this.setState({ isRunning: true});
         
-        
         this.intervalId = setInterval(() => { 
-          
+            
             if(totalSeconds <= 0){
                 clearInterval(this.intervalId);
                 this.setState({ isRunning: false });
@@ -55,8 +56,7 @@ class Timer extends React.Component{
                 m: String(m).padStart(2, "0"),
                 s: String(s).padStart(2, "0"),
                 
-                isRunning: false,
-                title : '',
+                
             })
             
         }, 1000);
@@ -64,20 +64,29 @@ class Timer extends React.Component{
     }
     
     resetTimer = ()=> {
+        clearInterval(this.intervalId)
         this.setState({
             isRunning : false,
             hours: 0,
             minutes: 0,
             seconds : 0,
-            title : ''
+       
             
         })
-        clearInterval(this.intervalId)
+        
     }
     
     componentWillUnmount() {
         clearInterval(this.intervalId)
-      
+        this.setState({
+            isRunning : false,
+            hours: 0,
+            minutes: 0,
+            seconds : 0,
+         
+            
+        })
+        
     }
     
     
