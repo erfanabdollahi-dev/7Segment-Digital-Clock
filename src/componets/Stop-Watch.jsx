@@ -11,7 +11,7 @@ class StopWatch extends React.Component{
             h: "00",
             m: "00",
             s: "00",
-            
+            isRunnig : false,
             totalSeconds : 0
         };
     }
@@ -19,9 +19,14 @@ class StopWatch extends React.Component{
     
     start = ()=>{
         
-        
+        if(this.state.isRunnig) return;
+        this.setState({
+            isRunnig: true
+        })
         this.intervalID =  setInterval(() => {
             
+            
+
             const h = Math.floor(this.state.totalSeconds/3600); //first divide by 3600 to get hours and then use floor exclude the minuts
             const m = Math.floor((this.state.totalSeconds % 3600)/ 60); //then seconds % 3600 to get the remainig seconds then divide with 60 to get minutes
             const s = this.state.totalSeconds % 60;  // gives the mainder of seconds
@@ -31,6 +36,8 @@ class StopWatch extends React.Component{
                 m: String(m).padStart(2, "0"),
                 s: String(s).padStart(2, "0"),
                 totalSeconds : this.state.totalSeconds+ 1,
+                
+                
             })
         }, 1000)
     }
@@ -39,6 +46,9 @@ class StopWatch extends React.Component{
     
     stop = ()=>{
         clearInterval(this.intervalID)
+        this.setState({
+            isRunnig : false,
+        })
         
     }
     
@@ -49,6 +59,7 @@ class StopWatch extends React.Component{
             m: "00",
             s: "00",
             totalSeconds : 0,
+            isRunnig : false,
         })
     }
     
