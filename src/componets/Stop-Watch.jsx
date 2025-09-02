@@ -67,6 +67,7 @@ class StopWatch extends React.Component{
     
     componentWillUnmount() {
         clearInterval(this.intervalID);
+        this.context.setTimeArr([])
         
     }
     

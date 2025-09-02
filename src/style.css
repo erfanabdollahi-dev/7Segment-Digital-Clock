@@ -261,11 +261,13 @@ body{
 
 .item{
   width: 100;
-
+  transition: .2s;
   padding:10px;
   
 }
-
+.item:hover{
+  transform: scale(1.05);
+}
 
 .logs{
   position: absolute;
