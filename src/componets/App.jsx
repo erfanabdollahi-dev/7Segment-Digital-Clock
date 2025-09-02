@@ -4,6 +4,13 @@ import Clock from "./Clock";
 import Timer from "./Timer";
 import StopWatch from "./Stop-Watch";
 import Log from "./Log";
+import { TextContext } from "./testContext.jsx";
+
+
+
+
+
+
 const App = () => {
     const [mode, setMode] = useState(0);
     const [timearr, setTimeArr] = useState([]);
@@ -44,10 +51,14 @@ const App = () => {
     // Determine which component to render
     let content = null;
     if (mode === 0) content = <Clock />;
-    else if (mode === 1) content = <StopWatch timearr={timearr} setTimeArr={setTimeArr} />;
+    else if (mode === 1) content = <StopWatch  />;
     else content = <Timer />;
     
     return (
+        <TextContext.Provider value={{
+            timearr,
+            setTimeArr
+        }}>
         <div className="container">
         <div className="all">
         <div className="buttons">
@@ -66,10 +77,11 @@ const App = () => {
         </div>
         </div>
         <div className="logs">
-        <Log>{timearr}</Log>
+        <Log/>
         </div>
         
         </div>
+        </TextContext.Provider>
     );
 };
 

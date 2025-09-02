@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client"
 import '../style.css'
 import { Digit } from "./Digit"
 import Log from "./Log"
+import { TextContext } from "./testContext.jsx"
 
 class StopWatch extends React.Component{
     constructor(){
@@ -54,7 +55,7 @@ class StopWatch extends React.Component{
     
     reset = ()=>{
         clearInterval(this.intervalID);
-        this.props.setTimeArr([])
+        this.context.setTimeArr([])
         this.setState({
             h: "00",
             m: "00",
@@ -73,11 +74,14 @@ class StopWatch extends React.Component{
         if(!this.state.isRunnig)return;
         const  {h, m, s} = this.state
         let newTime = String(h.padStart(2,"0")) + ':'+ String(m.padStart(2,"0")) + ':'+ String(s.padStart(2,"0"))
-        this.props.setTimeArr([ newTime,...this.props.timearr ])
+        this.context.setTimeArr([ newTime,...this.context.timearr ])
 
         
     }
     
+    static contextType = TextContext;
+
+
     render(){
         const { h, m, s } = this.state;
         return (
@@ -106,7 +110,7 @@ class StopWatch extends React.Component{
             <button onClick={this.start}>START</button>
             <button onClick={this.stop}>STOP</button>
             <button onClick={this.reset}>RESET</button>
-            <button onClick={this.Log}>LOG</button>
+            <button onClick={this.Log} >LOG</button>
             
             
             </div>
