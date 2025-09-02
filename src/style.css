@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    overflow: hidden;
+  background-color: rgb(34, 34, 34);
 }
 .container{
   display: flex;
@@ -11,7 +11,7 @@ body{
   height: 100vh;
   margin: 0;
   padding: 10px;
-  background-color: rgb(34, 34, 34);
+  
   justify-content: center;
   align-items: center;
  
@@ -175,7 +175,10 @@ body{
 /* Mobile */
 
 
-
+.stop-watch{
+  display: flex;
+  gap: 10px;
+}
 
 .stop-watch button{
   margin-top: 10px;
@@ -188,6 +191,7 @@ body{
   box-shadow: 1px 1px 5px rgb(0, 0, 0);
   cursor: pointer;
   transition: 0.2s;
+  
 }
 
 .stop-watch button:hover{
@@ -250,3 +254,22 @@ body{
   background-color: #0e0e0e;;
 
 }
+
+.log {
+  color: white;
+}
+
+.item{
+  width: 100;
+
+  padding:10px;
+  
+}
+
+
+.logs{
+  position: absolute;
+  top: 640px;
+  font-size: 2em;
+}
+

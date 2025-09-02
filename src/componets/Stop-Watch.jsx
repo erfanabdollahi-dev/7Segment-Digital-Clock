@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import '../style.css'
 import { Digit } from "./Digit"
-
+import Log from "./Log"
 
 class StopWatch extends React.Component{
     constructor(){
@@ -26,7 +26,7 @@ class StopWatch extends React.Component{
         this.intervalID =  setInterval(() => {
             
             
-
+            
             const h = Math.floor(this.state.totalSeconds/3600); //first divide by 3600 to get hours and then use floor exclude the minuts
             const m = Math.floor((this.state.totalSeconds % 3600)/ 60); //then seconds % 3600 to get the remainig seconds then divide with 60 to get minutes
             const s = this.state.totalSeconds % 60;  // gives the mainder of seconds
@@ -54,6 +54,7 @@ class StopWatch extends React.Component{
     
     reset = ()=>{
         clearInterval(this.intervalID);
+        this.props.setTimeArr([])
         this.setState({
             h: "00",
             m: "00",
@@ -65,8 +66,18 @@ class StopWatch extends React.Component{
     
     componentWillUnmount() {
         clearInterval(this.intervalID);
-      
+        
     }
+    
+    Log = ()=>{
+        if(!this.state.isRunnig)return;
+        const  {h, m, s} = this.state
+        let newTime = String(h.padStart(2,"0")) + ':'+ String(m.padStart(2,"0")) + ':'+ String(s.padStart(2,"0"))
+        this.props.setTimeArr([ newTime,...this.props.timearr ])
+
+        
+    }
+    
     render(){
         const { h, m, s } = this.state;
         return (
@@ -95,8 +106,11 @@ class StopWatch extends React.Component{
             <button onClick={this.start}>START</button>
             <button onClick={this.stop}>STOP</button>
             <button onClick={this.reset}>RESET</button>
+            <button onClick={this.Log}>LOG</button>
+            
             
             </div>
+            
             </>
         )
     }

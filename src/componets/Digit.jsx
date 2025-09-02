@@ -22,6 +22,7 @@ export function Digit({ number }) {
     <div className="digit">
       {segments.map((seg, i) => (
         <div
+          key={seg}
           className={`segment seg-${seg} ${digitToSegments[number][i] ? "on" : ""}`}
         />
       ))}
